@@ -6,7 +6,7 @@ import json
 import functools
 from botocore.exceptions import ClientError
 
-
+# no testeado
 def get_table(dynamodb=None):
     if not dynamodb:
         URL = os.environ['ENDPOINT_OVERRIDE']
@@ -20,7 +20,7 @@ def get_table(dynamodb=None):
     table = dynamodb.Table(os.environ['DYNAMODB_TABLE'])
     return table
 
-
+#testeado
 def get_item(key, dynamodb=None):
     table = get_table(dynamodb)
     try:
@@ -37,14 +37,14 @@ def get_item(key, dynamodb=None):
         if 'Item' in result:
             return result['Item']
 
-
+#testeado
 def get_items(dynamodb=None):
     table = get_table(dynamodb)
     # fetch todo from the database
     result = table.scan()
     return result['Items']
 
-
+#testeado
 def put_item(text, dynamodb=None):
     table = get_table(dynamodb)
     timestamp = str(time.time())
@@ -70,7 +70,7 @@ def put_item(text, dynamodb=None):
     else:
         return response
 
-
+#testeado
 def update_item(key, text, checked, dynamodb=None):
     table = get_table(dynamodb)
     timestamp = int(time.time() * 1000)
@@ -99,7 +99,7 @@ def update_item(key, text, checked, dynamodb=None):
     else:
         return result['Attributes']
 
-
+#testeado
 def delete_item(key, dynamodb=None):
     table = get_table(dynamodb)
     # delete the todo from the database
@@ -115,7 +115,7 @@ def delete_item(key, dynamodb=None):
     else:
         return
 
-
+#testeado
 def create_todo_table(dynamodb):
     # For unit testing
     tableName = os.environ['DYNAMODB_TABLE']

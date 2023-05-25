@@ -202,7 +202,8 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('---------------------')
         print ('Start: test_get_table')
         from src.todoList import get_table
-         result = get_items(None)
+        
+        result = get_table(None)
         self.assertTrue(result == self.text)
         print('End: test:get_table')
     

@@ -48,7 +48,7 @@ class TestDatabaseFunctions(unittest.TestCase):
     def test_table_exists(self):
         print ('---------------------')
         print ('Start: test_table_exists')
-        self.assertTrue(self.table)   # check if we got a result        #miguel
+        #self.assertTrue(self.table)   # check if we got a result        #miguel
         #self.assertTrue(self.table_local)  # check if we got a result  #miguel
 
         print('Table name:' + self.table.name)

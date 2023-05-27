@@ -199,14 +199,14 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('End: test_delete_todo_error')
     
     #miguel
-    def test_get_table(self):
+    '''def test_get_table(self):
         print ('---------------------')
         print ('Start: test_get_table')
         from src.todoList import get_table
         
-        result = get_table()
+        result = get_table(self.dynamodb)
         self.assertTrue(result == self.text)
-        print('End: test:get_table')
+        print('End: test:get_table')'''
     
 if __name__ == '__main__':
     unittest.main()

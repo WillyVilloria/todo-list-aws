@@ -80,7 +80,6 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Table mock
         self.assertRaises(Exception, put_item("", self.dynamodb))
         self.assertRaises(Exception, put_item("", None))
-        #self.assertRaises(Exception, put_item(""))                      #miguel
         print ('End: test_put_todo_error')
 
     def test_get_todo(self):
@@ -156,21 +155,21 @@ class TestDatabaseFunctions(unittest.TestCase):
                 updated_text,
                 "",
                 "false",
-                self.dynamodb))
+                None))
         self.assertRaises(
             TypeError,
             update_item(
                 "",
                 self.uuid,
                 "false",
-                self.dynamodb))
+                None))
         self.assertRaises(
             Exception,
             update_item(
                 updated_text,
                 self.uuid,
                 "",
-                self.dynamodb))
+                None))
         print ('End: atest_update_todo_error')
 
     def test_delete_todo(self):
@@ -198,16 +197,6 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         self.assertRaises(TypeError, delete_item("", None))
         print ('End: test_delete_todo_error')
-    
-    #miguel
-    '''def test_get_table(self):
-        print ('---------------------')
-        print ('Start: test_get_table')
-        from src.todoList import get_table
-        
-        result = get_table(self.dynamodb)
-        self.assertTrue(result == self.text)
-        print('End: test:get_table')'''
     
 if __name__ == '__main__':
     unittest.main()

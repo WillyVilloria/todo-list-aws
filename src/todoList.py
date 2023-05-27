@@ -22,8 +22,8 @@ def get_table(dynamodb=None):
 
 
 def get_item(key, dynamodb=None):
-    table = get_table(dynamodb)
     try:
+        table = get_table(dynamodb)
         result = table.get_item(
             Key={
                 'id': key
@@ -46,10 +46,10 @@ def get_items(dynamodb=None):
 
 
 def put_item(text, dynamodb=None):
-    table = get_table(dynamodb)
-    timestamp = str(time.time())
-    print('Table name:' + table.name)
     try:
+        table = get_table(dynamodb)
+        timestamp = str(time.time())
+        print('Table name:' + table.name)
         item = {
             'id': str(uuid.uuid1()),
             'text': text,
@@ -72,10 +72,10 @@ def put_item(text, dynamodb=None):
 
 
 def update_item(key, text, checked, dynamodb=None):
-    table = get_table(dynamodb)
-    timestamp = int(time.time() * 1000)
-    # update the todo in the database
     try:
+        table = get_table(dynamodb)
+        timestamp = int(time.time() * 1000)
+        # update the todo in the database
         result = table.update_item(
             Key={
                 'id': key

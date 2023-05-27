@@ -7,4 +7,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.0] - 2023-05-18
 ### Added
 - Versión inicial de código.
-
+## [1.0.1] - 2023-05-25
+###
+- Modificación de TestToDo.py

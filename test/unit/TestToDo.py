@@ -8,6 +8,7 @@ import json
 
 @mock_dynamodb
 class TestDatabaseFunctions(unittest.TestCase):
+    
     def setUp(self):
         print ('---------------------')
         print ('Start: setUp')
@@ -31,7 +32,7 @@ class TestDatabaseFunctions(unittest.TestCase):
 
         from src.todoList import create_todo_table
         self.table = create_todo_table(self.dynamodb)
-        #self.table_local = create_todo_table()
+        #self.table_local = create_todo_table()                         #miguel
         print ('End: setUp')
 
     def tearDown(self):
@@ -40,24 +41,23 @@ class TestDatabaseFunctions(unittest.TestCase):
         """Delete mock database and table after test is run"""
         self.table.delete()
         print ('Table deleted succesfully')
-        #self.table_local.delete()
+        #self.table_local.delete()                                      #miguel
         self.dynamodb = None
         print ('End: tearDown')
 
     def test_table_exists(self):
         print ('---------------------')
         print ('Start: test_table_exists')
-        #self.assertTrue(self.table)  # check if we got a result
-        #self.assertTrue(self.table_local)  # check if we got a result
+        #self.assertTrue(self.table)   # check if we got a result        #miguel
+        #self.assertTrue(self.table_local)  # check if we got a result  #miguel
 
         print('Table name:' + self.table.name)
         tableName = os.environ['DYNAMODB_TABLE'];
         # check if the table name is 'ToDo'
         self.assertIn(tableName, self.table.name)
-        #self.assertIn('todoTable', self.table_local.name)
+        #self.assertIn('todoTable', self.table_local.name)              #miguel
         print ('End: test_table_exists')
         
-
     def test_put_todo(self):
         print ('---------------------')
         print ('Start: test_put_todo')
@@ -68,8 +68,8 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('Response put_item:' + str(response))
         self.assertEqual(200, response['statusCode'])
         # Table mock
-        #self.assertEqual(200, put_item(self.text, self.dynamodb)[
-        #                 'ResponseMetadata']['HTTPStatusCode'])
+        #self.assertEqual(200, put_item(self.text, self.dynamodb)[      #miguel
+        #                 'ResponseMetadata']['HTTPStatusCode'])        #miguel
         print ('End: test_put_todo')
 
     def test_put_todo_error(self):
@@ -119,7 +119,6 @@ class TestDatabaseFunctions(unittest.TestCase):
         self.assertTrue(result[0]['text'] == self.text)
         print ('End: test_list_todo')
 
-
     def test_update_todo(self):
         print ('---------------------')
         print ('Start: test_update_todo')
@@ -139,7 +138,6 @@ class TestDatabaseFunctions(unittest.TestCase):
         print ('Result Update Item:' + str(result))
         self.assertEqual(result['text'], updated_text)
         print ('End: test_update_todo')
-
 
     def test_update_todo_error(self):
         print ('---------------------')
@@ -198,6 +196,16 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Testing file functions
         self.assertRaises(TypeError, delete_item("", self.dynamodb))
         print ('End: test_delete_todo_error')
-
+    
+    #miguel
+    def test_get_table(self):
+        print ('---------------------')
+        print ('Start: test_get_table')
+        from src.todoList import get_table
+        
+        result = get_table()
+        self.assertTrue(result == self.text)
+        print('End: test:get_table')
+    
 if __name__ == '__main__':
     unittest.main()

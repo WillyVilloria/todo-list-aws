@@ -47,10 +47,10 @@ def get_items(dynamodb=None):
 
 def put_item(text, dynamodb=None):
     
+    table = get_table(dynamodb)
+    timestamp = str(time.time())
+    print('Table name:' + table.name)
     try:
-        table = get_table(dynamodb)
-        timestamp = str(time.time())
-        print('Table name:' + table.name)
         item = {
         'id': str(uuid.uuid1()),
         'text': text,
@@ -102,9 +102,10 @@ def update_item(key, text, checked, dynamodb=None):
 
 
 def delete_item(key, dynamodb=None):
-    table = get_table(dynamodb)
-    # delete the todo from the database
+    
     try:
+        table = get_table(dynamodb)
+        # delete the todo from the database
         table.delete_item(
             Key={
                 'id': key

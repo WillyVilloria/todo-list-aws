@@ -80,6 +80,7 @@ class TestDatabaseFunctions(unittest.TestCase):
         # Table mock
         self.assertRaises(Exception, put_item("", self.dynamodb))
         self.assertRaises(Exception, put_item("", self.dynamodb))
+        self.assertRaises(Exception, put_item(""))                      #miguel
         print ('End: test_put_todo_error')
 
     def test_get_todo(self):

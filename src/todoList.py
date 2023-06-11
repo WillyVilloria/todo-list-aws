@@ -6,7 +6,26 @@ import json
 import functools
 from botocore.exceptions import ClientError
 
-
+def translate(key, text, dynamodb=None):
+    try:
+        table = get_table(dynamodb)
+        result = table.get_item(
+            Key={
+                'id': key,
+                'text': text
+            }
+        )
+    except ClientError as e:
+        print(e.response['Error']['Message'])
+    else:
+        print('Result getItem:'+str(result))
+        if 'Item' in result:
+            Text = text
+            translate = boto3.client('translate')
+            respuesta = translate.translate_text(Text, 'es', 'cy')
+            translated_text = respuesta['TranslatedText']
+            return translated_text
+        
 def get_table(dynamodb=None):
     if not dynamodb:
         URL = os.environ['ENDPOINT_OVERRIDE']

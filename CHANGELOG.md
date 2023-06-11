@@ -17,3 +17,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
     - unhealthyThreshold: 80.0
 - Creación de logs de pipelines
 - Creación de nuevo pipeline para el caso B
+- ## [1.0.2] - 2023-06-12
+- Add funcion translate
+- update archivo todolist.py
+- update template.yaml 
